@@ -3,7 +3,8 @@
 - link:
     ~/.dotfiles: ''
     ~/.tmux.conf: tmux.conf
-    ~/.zshrc: zshrc
+    ~/.zsh: zsh
+    ~/.config/nvim: nvim
     ~/.oh-my-zsh: .oh-my-zsh/
     ~/.gitignore: gitignore  
 

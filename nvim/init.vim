@@ -7,7 +7,15 @@ call plug#begin()
  Plug 'preservim/nerdcommenter'
  Plug 'mhinz/vim-startify'
  Plug 'neoclide/coc.nvim', {'branch': 'release'}
-call plug#end()
+ Plug 'rust-lang/rust.vim'
+ Plug 'dense/analysis/ale'
+ Plug 'vim-autoformat/vim-autoformat'
+ call plug#end()
+
+" Auto open NERDTree
+au VimEnter * NERDTree
+
+
 
 set nocompatible            " disable compatibility to old-time vi
 set showmatch               " show matching 
@@ -30,6 +38,14 @@ set clipboard=unnamedplus   " using system clipboard
 filetype plugin on
 set cursorline              " highlight current cursorline
 set ttyfast                 " Speed up scrolling in Vim
+set encoding=utf8
+
+" Rust Syntax
+let g:rustfmt_autosave = 1
+let g:rustfmt_emit_files = 1
+let g:rustfmt_fail_silently = 0
+
 " set spell                 " enable spell check (may need to download language package)
 " set noswapfile            " disable creating swap file
 " set backupdir=~/.cache/vim " Directory to store backup files.
+
