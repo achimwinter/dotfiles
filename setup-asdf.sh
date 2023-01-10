@@ -5,7 +5,7 @@ asdf plugin add rust
 asdf plugin add nodejs
 
 # Java
-asdf plugin add java
+# asdf plugin add java
 
 # Python
-asdf plugin add python
+# asdf plugin add python
