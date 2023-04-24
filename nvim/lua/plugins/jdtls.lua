@@ -105,7 +105,26 @@ return {
                 -- See https://github.com/eclipse/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request
                 -- for a list of options
                 settings = {
-                  java = {},
+                  java = {
+                    eclipse = {
+                      downloadSources = true,
+                    },
+                    maven = {
+                      downloadSources = true,
+                    },
+                    implementationsCodeLens = {
+                      enabled = true,
+                    },
+                    referencesCodeLens = {
+                      enabled = true,
+                    },
+                    references = {
+                      includeDecompiledSources = true,
+                    },
+                  },
+                },
+                contentProvider = {
+                  preferred = "fernflower"
                 },
                 handlers = {
                   ["language/status"] = function(_, result)
