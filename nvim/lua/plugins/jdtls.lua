@@ -135,6 +135,25 @@ return {
                   end,
                 },
               }
+              local bundles = {
+                vim.fn.glob("/home/achim/.local/share/nvim/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar", 1),
+              };
+              
+              -- This is the new part
+              vim.list_extend(bundles, vim.split(vim.fn.glob("/home/achim/.local/share/nvim/java-test/server/*.jar", 1), "\n"))
+              config['init_options'] = {
+                bundles = bundles;
+              }
+
+              config['on_attach'] = function(client, bufnr)
+                -- With `hotcodereplace = 'auto' the debug adapter will try to apply code changes
+                -- you make during a debug session immediately.
+                -- Remove the option if you do not want that.
+                -- You can use the `JdtHotcodeReplace` command to trigger it manually
+                require('jdtls').setup_dap({ hotcodereplace = 'auto' })
+                require('jdtls.dap').setup_dap_main_class_configs()
+                end
+
               require("jdtls").start_or_attach(config)
             end,
           })
