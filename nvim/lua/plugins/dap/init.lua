@@ -33,6 +33,7 @@ local M = {
       setup = {
         osv = function(_, _)
           require("plugins.dap.lua").setup()
+          require("plugins.dap.javascript").setup()
         end,
       },
     },

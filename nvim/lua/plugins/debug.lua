@@ -9,7 +9,7 @@
 return {
   -- NOTE: Yes, you can install new plugins here!
   'mfussenegger/nvim-dap',
-  "mxsdev/nvim-dap-vscode-js",
+  {"mxsdev/nvim-dap-vscode-js", opt = true, run = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out" },
   -- NOTE: And you can specify dependencies as well
   dependencies = {
     -- Creates a beautiful debugger UI
