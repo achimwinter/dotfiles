@@ -3,14 +3,14 @@ local DEBUGGER_PATH = "/home/achim/.local/share/nvim/lazy/vscode-js-debug"
 local M = {}
 
 function M.setup()
-  require("dap-vscode-js").setup {
+  require("dap-vscode-js").setup({
     -- node_path = "node",
     debugger_path = DEBUGGER_PATH,
     -- debugger_cmd = { "js-debug-adapter" },
     adapters = { "pwa-node", "pwa-chrome", "pwa-msedge", "node-terminal", "pwa-extensionHost" }, -- which adapters to register in nvim-dap
-  }
+  })
 
-  for _, language in ipairs { "typescript", "javascript" } do
+  for _, language in ipairs({ "typescript", "javascript" }) do
     require("dap").configurations[language] = {
       {
         type = "pwa-node",
@@ -41,10 +41,19 @@ function M.setup()
         console = "integratedTerminal",
         internalConsoleOptions = "neverOpen",
       },
+      {
+        type = "pwa-chrome",
+        name = "Attach - Remote Debugging",
+        request = "attach",
+        program = "${file}",
+        sourceMaps = true,
+        protocol = "inspector",
+        webRoot = "${workspaceFolder}",
+      },
     }
   end
 
-  for _, language in ipairs { "typescriptreact", "javascriptreact" } do
+  for _, language in ipairs({ "typescriptreact", "javascriptreact" }) do
     require("dap").configurations[language] = {
       {
         type = "pwa-chrome",
