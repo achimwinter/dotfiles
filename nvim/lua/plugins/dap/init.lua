@@ -60,8 +60,6 @@ local M = {
       opts.setup[k](plugin, opts)
     end
   end,
-
-  require("dap.ext.vscode").load_launchjs(nil, {}),
 }
 
 return M
