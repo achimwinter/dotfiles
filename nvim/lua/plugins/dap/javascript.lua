@@ -7,7 +7,7 @@ function M.setup()
     -- node_path = "node",
     debugger_path = DEBUGGER_PATH,
     -- debugger_cmd = { "js-debug-adapter" },
-    adapters = { "pwa-node", "pwa-chrome", "pwa-msedge", "node-terminal", "pwa-extensionHost" }, -- which adapters to register in nvim-dap
+    adapters = { "chrome", "node", "pwa-node", "pwa-chrome", "pwa-msedge", "node-terminal", "pwa-extensionHost" }, -- which adapters to register in nvim-dap
   })
 
   for _, language in ipairs({ "typescript", "javascript" }) do
@@ -20,11 +20,37 @@ function M.setup()
         cwd = "${workspaceFolder}",
       },
       {
+        name = "JS Debug Adapter",
+        type = "pwa-chrome",
+        request = "attach",
+        host = "DESKTOP-19KBTDR.local",
+        port = 9222,
+        executable = {
+          "js-debug-adapter",
+          args = { "${port}" },
+        },
+      },
+      {
         type = "pwa-node",
         request = "attach",
         name = "Attach",
         processId = require("dap.utils").pick_process,
         cwd = "${workspaceFolder}",
+      },
+      {
+        type = "pwa-chrome",
+        name = "Attach chrome, Port 9222",
+        request = "attach",
+        port = 9222,
+        cwd = "${workspaceFolder}",
+      },
+      {
+        type = "chrome",
+        request = "launch",
+        name = 'Start Chrome with "localhost"',
+        url = "http://localhost:3000",
+        webRoot = "${workspaceFolder}",
+        userDataDir = "${workspaceFolder}/.vscode/vscode-chrome-debug-userdatadir",
       },
       {
         type = "pwa-node",
@@ -40,15 +66,6 @@ function M.setup()
         cwd = "${workspaceFolder}",
         console = "integratedTerminal",
         internalConsoleOptions = "neverOpen",
-      },
-      {
-        type = "pwa-chrome",
-        name = "Attach - Remote Debugging",
-        request = "attach",
-        program = "${file}",
-        sourceMaps = true,
-        protocol = "inspector",
-        webRoot = "${workspaceFolder}",
       },
     }
   end
