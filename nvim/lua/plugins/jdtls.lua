@@ -8,7 +8,7 @@ return {
           vim.api.nvim_create_autocmd("FileType", {
             pattern = "java",
             callback = function()
-              require("lazyvim.util").on_attach(function(_, buffer)
+              require("lazyvim.util").lsp.on_attach(function(_, buffer)
                 vim.keymap.set(
                   "n",
                   "<leader>di",
@@ -65,7 +65,6 @@ return {
                   -- depends on if `java` is in your $PATH env variable and if it points to the right version.
 
                   "-javaagent:/home/achim/.local/share/nvim/mason/packages/jdtls/lombok.jar",
-                  -- '-Xbootclasspath/a:/home/jake/.local/share/java/lombok.jar',
                   "-Declipse.application=org.eclipse.jdt.ls.core.id1",
                   "-Dosgi.bundles.defaultStartLevel=4",
                   "-Declipse.product=org.eclipse.jdt.ls.core.product",
