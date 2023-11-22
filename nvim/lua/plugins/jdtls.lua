@@ -120,6 +120,10 @@ return {
                     references = {
                       includeDecompiledSources = true,
                     },
+                    format = {
+                      enabled = true,
+                      settingsUrl = "https://raw.githubusercontent.com/google/styleguide/gh-pages/intellij-java-google-style.xml",
+                    }
                   },
                 },
                 contentProvider = {
